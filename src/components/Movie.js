@@ -1,5 +1,12 @@
 function Movie(props) {
 
+    let content;
+
+    if(props.rating > 8) {
+        content = <span>RECOMMENDED</span>
+    } else {
+        content = "";
+    }
 
     return (
         <div>
@@ -7,6 +14,7 @@ function Movie(props) {
             <p>
                 Year: {props.year} <br />
                 Rating: {props.rating} <br />
+                {content}
             </p>
         </div>
     );
