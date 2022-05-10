@@ -7,7 +7,8 @@ function Movie(props) {
                 Year: {props.year} <br />
                 Rating: {props.rating} <br />
                 
-                { props.rating > 8 && <span>RECOMMENDED</span>}
+                { props.rating > 8 ? <span>RECOMMENDED</span> : <span>SKIP</span> }
+
             </p>
         </div>
     );
