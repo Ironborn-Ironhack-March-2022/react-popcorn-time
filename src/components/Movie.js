@@ -1,7 +1,8 @@
-function Movie(props) {
+import "./Movie.css"
 
+function Movie(props) {
     return (
-        <div>
+        <div className="Movie">
             <h3>{props.title}</h3>
             <p>
                 Year: {props.year} <br />
