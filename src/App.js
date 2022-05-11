@@ -10,6 +10,11 @@ import Controls from "./components/Controls";
 function App() {
 
   const [movies, setMovies] = useState(moviesArr);
+  
+  const [title, setTitle] = useState("");
+  const [year, setYear] = useState(2000);
+  const [rating, setRating] = useState(5);
+
 
   const filterByMinRating = (minRating) => {
 
@@ -26,10 +31,35 @@ function App() {
 
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setMovies((prevMovies) => {
+      const newMovie = {
+        title: title,
+        year: year,
+        rating: rating
+      };
+      return [newMovie, ...prevMovies];
+    });
+    setTitle("");
+  }
+
+
   return (
     <div className="App">
       <Header numberOfMovies={movies.length} />
       <Controls callbackTopRated={filterByMinRating} />
+
+      <div>
+        <form onSubmit={handleSubmit}>
+          <input type="text" name="title" value={title} onChange={(e) => {setTitle(e.target.value)}} />
+          <input type="number" name="year" value={year} onChange={(e) => {setYear(e.target.value)}} />
+          <input type="number" name="rating" value={rating} onChange={(e) => {setRating(e.target.value)}} />
+          <button>Create</button>
+        </form>
+      </div>
+
+
       <Main listOfMovies={movies} />
       <Footer />
     </div>
