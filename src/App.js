@@ -5,12 +5,13 @@ import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Main from './components/Main';
+import Controls from "./components/Controls";
 
 function App() {
 
   const [movies, setMovies] = useState(moviesArr);
 
-  const filterTopRatedOnly = () => {
+  const filterByMinRating = (minRating) => {
 
     // option 1: we pass the new value
     // setMovies(newListOfMovies);
@@ -18,7 +19,7 @@ function App() {
     // option 2: we pass a function (functional update)
     setMovies((prevValue) => {
       const newListOfMovies = prevValue.filter((movie) => {
-        return movie.rating > 8;
+        return movie.rating >= minRating;
       });
       return newListOfMovies;
     });
@@ -28,11 +29,7 @@ function App() {
   return (
     <div className="App">
       <Header numberOfMovies={movies.length} />
-
-      <div className="controls">
-        <button onClick={filterTopRatedOnly}>Display Top Rated Only</button>
-      </div>
-
+      <Controls callbackTopRated={filterByMinRating} />
       <Main listOfMovies={movies} />
       <Footer />
     </div>
